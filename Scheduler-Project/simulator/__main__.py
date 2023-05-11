@@ -5,7 +5,7 @@ from copy import deepcopy
 from simulator.core.process import Process
 from simulator.schedulers import FCFS, RoundRobin, SRTF, SJF
 
-RESULT_DIR = 'schedules'
+RESULT_DIR = '..\schedules'
 RESULT_FCFS = 'FCFS.txt'
 RESULT_RR = 'RR.txt'
 RESULT_SRTF = 'SRTF.txt'
@@ -18,7 +18,7 @@ def read_input(input_file):
         for line in f:
             array = line.split()
             if len(array) != 3:
-                print ("wrong input format")
+                print("wrong input format")
                 exit()
             res += [Process(int(array[0]), int(array[1]), int(array[2]))]
 
@@ -30,11 +30,16 @@ def write_output(output_file, schedule, avg_waiting_time):
         for item in schedule:
             f.write(str(item) + '\n')
         f.write('average waiting time %.2f\n' % avg_waiting_time)
+    for item in schedule:
+        print(str(item))
+    print('average waiting time %.2f\n' % avg_waiting_time)
+
 
 
 if __name__ == '__main__':
-    input_file = str(sys.argv[1])
+    input_file = str('../examples/test1.in')
     processes = read_input(input_file)
+    print(processes)
 
     # Schedulers
     schedulers = [FCFS(), RoundRobin(), SRTF(), SJF()]
