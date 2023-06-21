@@ -16,11 +16,22 @@ class SRTF(Scheduler):
 
     def perform_schedule(self):
         """
-        We perform scheduling in either of the two scenarions:
+        We perform scheduling in either of the two scenarios:
         1. A task completes its execution
         2. A shorter task has arrived in the ready queue.
         """
-        # TODO: Implement here your code.
+        if self.active and self.active.burst_time == 0:
+            # Case 1: A task completes its execution
+            self.active = None
+
+        if self.q and self.q.peek().burst_time < (self.active.burst_time if self.active else float('inf')):
+            # Case 2: A shorter task has arrived in the ready queue
+            if self.active:
+                # Preempt the current task and put it back in the ready queue
+                self.q.add(self.active, priority=self.active.burst_time)
+            self.active = self.q.pop()
+
+        return self.active
 
     def enqueue_new_jobs(self):
         """

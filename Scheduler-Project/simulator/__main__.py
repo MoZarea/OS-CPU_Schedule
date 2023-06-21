@@ -42,8 +42,18 @@ if __name__ == '__main__':
     print(processes)
 
     # Schedulers
-    schedulers = [FCFS(), RoundRobin(), SRTF(), SJF()]
-    result_names = [RESULT_FCFS, RESULT_RR, RESULT_SRTF, RESULT_SJF]
+    schedulers = [
+     # FCFS(),
+      #  RoundRobin(),
+        SRTF(),
+       # SJF()
+    ]
+    result_names = [
+       # RESULT_FCFS,
+      #  RESULT_RR,
+        RESULT_SRTF,
+       # RESULT_SJF
+    ]
 
     for idx, scheduler in enumerate(schedulers):
         schedule = scheduler.schedule(deepcopy(processes))
