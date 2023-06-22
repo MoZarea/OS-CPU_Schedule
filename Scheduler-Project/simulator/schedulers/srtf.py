@@ -21,13 +21,10 @@ class SRTF(Scheduler):
         2. A shorter task has arrived in the ready queue.
         """
         if self.active and self.active.burst_time == 0:
-            # Case 1: A task completes its execution
             self.active = None
 
         if self.q and self.q.peek().burst_time < (self.active.burst_time if self.active else float('inf')):
-            # Case 2: A shorter task has arrived in the ready queue
             if self.active:
-                # Preempt the current task and put it back in the ready queue
                 self.q.add(self.active, priority=self.active.burst_time)
             self.active = self.q.pop()
 

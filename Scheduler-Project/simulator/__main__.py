@@ -43,16 +43,16 @@ if __name__ == '__main__':
 
     # Schedulers
     schedulers = [
-     # FCFS(),
-      #  RoundRobin(),
-        SRTF(),
-       # SJF()
+     FCFS(),
+    # RoundRobin(),
+    #  SRTF(),
+    #   SJF(),
     ]
     result_names = [
-       # RESULT_FCFS,
-      #  RESULT_RR,
-        RESULT_SRTF,
-       # RESULT_SJF
+       RESULT_FCFS,
+    # RESULT_RR,
+    # RESULT_SRTF,
+    #    RESULT_SJF,
     ]
 
     for idx, scheduler in enumerate(schedulers):

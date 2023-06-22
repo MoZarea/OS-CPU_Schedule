@@ -31,13 +31,21 @@ class SJF(Scheduler):
             self.q.add(nxt, priority=self.tau[nxt.id])
 
     def perform_schedule(self):
-        """
-        Returns the next job to execute in the SJF algorithm, and updates the
-        predictions for all processes in the ready queue.
-        """
-        # TODO: Implement here your code.
+
+        self.active = self.q.pop() if self.q else None
+
+        if self.active:
+            self.tau[self.active.id] = self.predict_next_burst(
+                self.tau[self.active.id],
+                self.active.burst_time)
+
+        return self.active
 
     def predict_next_burst(self, current_prediction, current_burst_time):
+        """Returns the predicted time of the next burst of the process."""
+        return self.alpha * current_burst_time + \
+               (1 - self.alpha) * current_prediction
+def predict_next_burst(self, current_prediction, current_burst_time):
         """Returns the predicted time of the next burst of the process."""
         return self.alpha * current_burst_time +\
             (1-self.alpha) * current_prediction

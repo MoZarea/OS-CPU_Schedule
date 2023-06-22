@@ -21,15 +21,12 @@ class RoundRobin(Scheduler):
         the queue.
         """
         
-        # TODO: Implement your code here.
-        # If there is no active process, dequeue the next process
 
         if not self.active:
             self.curr_q = 0
             if self.q:
                 self.active = self.q.popleft()
 
-        # If there is an active process, keep running it
         elif self.active.burst_time>0 :
             self.curr_q = 0
             if self.active.burst_time > 0:
@@ -39,7 +36,6 @@ class RoundRobin(Scheduler):
                 self.active = self.q.popleft()
         elif  self.active.burst_time==0:
 
-            # if self.curr_q<self.time_q-1:
             self.curr_q = 0
             self.active = None
             if self.q:
